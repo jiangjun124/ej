@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    
+    <title>Document</title>
+</head>
+<body>
+    <div class="table">
+        <table class="table thead-dark table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th>#</th>
+                    <th>名字</th>
+                    <th>联系人</th>
+                    <th>联系方式</th>
+                    <th>规模</th>
+                </tr>
+            </thead>
+
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fenye">
+        <nav aria-label="Page navigation example">
+            <ul id="fenye" class="pagination justify-content-center pagination-lg">
+               
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+       
+
+        $(function(){
+            var baseURL = "http://203.195.246.58:7777"
+            var url = "/Business/findAll";
+  
+            var cpage; //当前页面
+            var pages; //总页数
+            var num; //一页多少行数据
+            var start; //从哪个数据开始
+            var end; //从哪个数据结束
+            num = 4;
+
+           
+            //获取总页数
+            function yeshu(){
+                $.get(baseURL + url, function(result){
+                    var length = result.data.length;    //数据长度
+                    if(length % num == 0){
+                        pages = length / num;
+                    }else{
+                        pages = (length / num) + 1;
+                    } 
+
+                    console.log(pages);
+
+                    for(var i = 1; i <= pages; i ++){
+                        var newLi = (`
+                            <li  class="page-item"><a class="page-link" href="javascript:void(0)">`+i+`</a></li>
+                        `);
+
+                        $("#fenye").append(newLi);
+                    }    
+
+                })
+            }
+
+            yeshu();
+            
+            // 获取第一页数据
+            function initData(){
+                $.get(baseURL + url, function(result){
+                    $("#tbody").empty();
+                    for(var i = 0; i <= 3; i ++){
+                        var newTr = (`
+                            <tr class = "text-center">
+                                <td><input type = checkbox value = "`+result.data[i].id+`"></td>
+                                <td>`+result.data[i].name+`</td>
+                                <td>`+result.data[i].contactName+`</td>
+                                <td>`+result.data[i].contactPhone+`</td>
+                                <td>`+result.data[i].scale+`</td>
+                            </tr>
+                        `);
+                        $("#tbody").append(newTr);
+                        
+                    }
+                })
+            }
+
+            initData();
+            
+           $("#fenye").on("click","a",function(){
+                cpage = $(this).text(); 
+                    $("#tbody").empty();
+                    start = (cpage - 1) * num;
+                    end = (cpage * num) - 1;
+
+                    $.get(baseURL + url, function(result){
+                            
+                        for(var i = start; i <= end; i ++){
+                            var newTr = (`
+                                <tr class = "text-center">
+                                    <td><input type = checkbox value = "`+result.data[i].id+`"></td>
+                                    <td>`+result.data[i].name+`</td>
+                                    <td>`+result.data[i].contactName+`</td>
+                                    <td>`+result.data[i].contactPhone+`</td>
+                                    <td>`+result.data[i].scale+`</td>
+                                </tr>
+                            `);
+                            $("#tbody").append(newTr);
+                            
+                        }
+                    })
+           })
+            
+        })
+
+
+    </script>
+</body>
+</html>

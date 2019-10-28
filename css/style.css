@@ -1,0 +1,85 @@
+html,body,.container-fluid,.content{
+	height: 100%;
+}
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.container-fluid{
+	padding: 0 !important;
+	margin: 0 !important;
+	overflow: hidden;
+}
+.top{
+	line-height: 3em;
+	font-size: 20px;
+	color: #ffffff;
+	font-weight: bold;
+}
+.content .left>ul>li{
+	font-size: 16px;
+	line-height: 3em;
+	border-bottom: 1px solid #ededed;
+}
+.content .left>ul>li>a{
+	color: #ffffff;
+}
+.content .right{
+	box-sizing: border-box;
+	height: 100%;
+	background-color: #ededed;
+	padding:15px 20px; 
+}
+.content .right #wrapper{
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #ffffff;
+	height: 100%;
+}
+ul.left_nav > li.current{
+	background-color:#ffffff;
+}
+ul.left_nav > li.current a{
+	color:#17a2b8;
+}
+/*.containe > .left a {
+	color: #ffffff;
+	font-size: 14px;
+}
+.containe>.left >.title{
+	line-height: 4em;
+	font-size: 20px;
+	font-weight: bold;
+	border-bottom: 1px solid #ededed;
+}
+.left> ul.left_nav > li{
+	font-size: 14px;
+	line-height: 3em;
+	border-bottom: 1px solid #ededed;
+
+}
+.left >ul.left_nav > li.current{
+	background-color: #ededed;
+}
+.left >ul.left_nav > li.current a{
+	color: teal;
+}
+.containe > .right{
+	box-sizing: border-box;
+	height: 100%;
+	background-color: #ededed;
+	margin-left: 220px;
+	padding:10px 20px; 
+}
+.containe > .right > .content{
+	padding: 1em;
+	border-radius: 5px;
+	background-color: #ffffff;
+	height: 100%;
+}
+.containe > .right >.content >.mb_nav{
+	border-bottom: 1px solid #ccc;
+	line-height: 2em;
+	margin-bottom: .5em;
+}*/
